@@ -1,5 +1,10 @@
 # CNN
-基于pytorch各种CNN基础模型复现
+基于pytorch各种CNN基础模型复现 
+
+### Requirements
+  `torch`
+  `torchvision`
+  `matplotlib`
 
 ### CNN模型的发展
 1986 -- MLP  
