@@ -2,7 +2,7 @@
 
 [Paper](http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf)
 
-[Dataset:CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
+Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 
 ### Network
 <div align='center'>
