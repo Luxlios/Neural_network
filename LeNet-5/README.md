@@ -2,7 +2,7 @@
 
 [Paper](https://axon.cs.byu.edu/~martinez/classes/678/Papers/Convolution_nets.pdf)
 
-[Dataset:CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
+Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 
 ### Network
 <div align='center'>
