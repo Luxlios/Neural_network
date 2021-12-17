@@ -20,7 +20,7 @@
 [Paper](http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf)  
 
 2013 -- ZF-Net  
-调参后的AlexNet，通过反卷积(deconvnet)可视化网络进行参数调整
+调参后的AlexNet，通过反卷积(deconvnet)可视化网络进行参数调整  
 [Paper](https://arxiv.org/pdf/1311.2901.pdf) 
 
 ......
