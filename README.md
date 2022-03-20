@@ -19,9 +19,9 @@
 向深度发展，引入dropout和data augmentation  
 [Paper](http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf)  
 
-2013 -- ZF-Net  
-调参后的AlexNet，通过反卷积(deconvnet)可视化网络进行参数调整  
-[Paper](https://arxiv.org/pdf/1311.2901.pdf) 
+2014 -- YGG  
+探索更深层次的网络结构，用小卷积核代替大卷积核，减少参数 
+[Paper](https://arxiv.org/pdf/1409.1556.pdf) 
 
 ......
 
