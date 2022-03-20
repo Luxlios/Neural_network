@@ -23,5 +23,8 @@
 探索更深层次的网络结构，用小卷积核代替大卷积核，减少参数  
 [Paper](https://arxiv.org/pdf/1409.1556.pdf) 
 
+2014 -- GoogLeNet v1
+引入inception，在流行“加深”的时候提供了“加宽”的思路，采用平均池化代替全连接层的思想
+[Paper](https://arxiv.org/pdf/1409.4842.pdf)
 ......
 
