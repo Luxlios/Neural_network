@@ -5,7 +5,7 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 
 ### Inception 
 <div align='center'>
-  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/Inception.png'height='700'>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/Inception.png'height='300'>
 </div>
 
 ### Network
