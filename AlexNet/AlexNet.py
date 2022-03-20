@@ -18,7 +18,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 class alexnet(nn.Module):
     def __init__(self):
         super(alexnet, self).__init__()
-        # input:32*32*3    paper:224*224*3(preprosess->227*227*3)
+        # input:32*32*3    paper:224*224*3(preprocess->227*227*3)
         # convolution & pooling
         self.conv = nn.Sequential(
             # paper:kernel_size = 11, stride = 4, padding = 2
