@@ -16,7 +16,7 @@
 [Paper](https://axon.cs.byu.edu/~martinez/classes/678/Papers/Convolution_nets.pdf)  
 
 2012 -- AlexNet  
-向深度发展，引入dropout和data augmentation  
+向深度发展，引入dropout, data augmentation和local response normalization  
 [Paper](http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf)  
 
 2014 -- VGG  
