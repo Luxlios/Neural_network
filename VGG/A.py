@@ -94,7 +94,7 @@ if __name__ == '__main__':
     # GPU
     # device = torch.device("cuda:0")
     # network = LeNet().to(device)
-    network = vggA(10)
+    network = vggA(n_class=10)
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
 
     # train & test
