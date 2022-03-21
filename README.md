@@ -30,13 +30,15 @@
 采用平均池化代替全连接层的思想，最后依旧加了一个全连接层方便finetune    
 [Paper](https://arxiv.org/pdf/1409.4842.pdf)  
 
-2015 -- GooLeNet v2 & v3   
-GooLeNet v2  
+2015 -- GooLeNet v2   
 学习VGG，采用两个3x3卷积代替5x5卷积  
 将nxn卷积分别为1xn卷积和nx1卷积，减少1/3的cost  
 inception“更宽”消除表示瓶颈  
+[Paper](https://arxiv.org/pdf/1512.00567v3.pdf)  
 
-GooLeNet v3
+GooLeNet v3  
+[Paper](https://arxiv.org/pdf/1502.03167v3.pdf)  
+
 
 ......
 
