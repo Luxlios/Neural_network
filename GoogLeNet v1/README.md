@@ -10,5 +10,5 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 
 ### Network
 <div align='center'>
-  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/GoogLeNet_v1.png'height='1700'>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/GoogLeNet_v1.png'height='2500'>
 </div>
