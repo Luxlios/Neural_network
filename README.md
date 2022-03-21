@@ -26,19 +26,19 @@
 2014 -- GoogLeNet v1  
 引入inception，在流行“加深”的时候提供了“加宽”的思路  
 引入前置1x1卷积减少参数量（先用1x1卷积降低深度，再进行其他卷积）  
-中间两个部位加入softmax层，防止梯度消失，最终预测时这两个部分需要去掉  
+中间两个部位加入softmax层，防止梯度消失，加速网络收敛， 最终预测时这两个部分需要去掉  
 采用平均池化代替全连接层的思想，最后依旧加了一个全连接层方便finetune    
 [Paper](https://arxiv.org/pdf/1409.4842.pdf)  
 
 2015 -- GooLeNet v2   
+引入Batch Normalization
+[Paper](https://arxiv.org/pdf/1502.03167v3.pdf)  
+
+2015 -- GooLeNet v3   
 学习VGG，采用两个3x3卷积代替5x5卷积  
 将nxn卷积分别为1xn卷积和nx1卷积，减少1/3的cost  
 inception“更宽”消除表示瓶颈  
-[Paper](https://arxiv.org/pdf/1512.00567v3.pdf)  
-
-2015 -- GooLeNet v3  
-[Paper](https://arxiv.org/pdf/1502.03167v3.pdf)  
-
+[Paper](https://arxiv.org/pdf/1512.00567v3.pdf)   
 
 ......
 
