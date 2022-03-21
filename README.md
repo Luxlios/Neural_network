@@ -36,7 +36,7 @@
 inception“更宽”消除表示瓶颈  
 [Paper](https://arxiv.org/pdf/1512.00567v3.pdf)  
 
-GooLeNet v3  
+2015 -- GooLeNet v3  
 [Paper](https://arxiv.org/pdf/1502.03167v3.pdf)  
 
 
