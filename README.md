@@ -31,7 +31,7 @@
 [Paper](https://arxiv.org/pdf/1409.4842.pdf)  
 
 2015 -- GooLeNet v2   
-引入Batch Normalization
+引入Batch Normalization  
 [Paper](https://arxiv.org/pdf/1502.03167v3.pdf)  
 
 2015 -- GooLeNet v3   
