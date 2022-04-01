@@ -20,7 +20,7 @@
 [Paper](http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf)  
 
 2014 -- VGG  
-探索更深层次的网络结构，用小卷积核代替大卷积核，减少参数  
+探索更深层次的网络结构，用多个小卷积核代替大卷积核（感受野不变），减少参数  
 [Paper](https://arxiv.org/pdf/1409.1556.pdf) 
 
 2014 -- GoogLeNet v1  
