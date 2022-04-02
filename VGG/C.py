@@ -102,7 +102,7 @@ if __name__ == '__main__':
     loss_function = nn.CrossEntropyLoss()
     # GPU
     # device = torch.device("cuda:0")
-    # network = vggC().to(device)
+    # network = vggC(n_class=10).to(device)
     network = vggC(n_class=10)
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
 
@@ -115,7 +115,7 @@ if __name__ == '__main__':
         for data in iter(trainloader):
             inputs, labels = data
     #         GPU
-    #         inputs, labels = images.to(device), labels.to(device)
+    #         inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = network(inputs)
             loss = loss_function(outputs, labels)
