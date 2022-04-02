@@ -89,7 +89,7 @@ if __name__ == '__main__':
     loss_function = nn.CrossEntropyLoss()
     # GPU
     # device = torch.device("cuda:0")
-    # network = LeNet().to(device)
+    # network = alexnet().to(device)
     network = alexnet()
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
 
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         for data in iter(trainloader):
             inputs, labels = data
     #         GPU
-    #         images, labels = images.to(device), labels.to(device)
+    #         inputs, labels = images.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = network(inputs)
             loss = loss_function(outputs, labels)
@@ -118,7 +118,7 @@ if __name__ == '__main__':
             for data in iter(trainloader):
                 inputs, labels = data
     #             GPU
-    #             images, labels = images.to(device), labels.to(device)
+    #             inputs, labels = inputs.to(device), labels.to(device)
                 outputs = network(inputs)
                 probability, prediction = torch.max(outputs, 1)
                 total += labels.size(0)
@@ -133,7 +133,7 @@ if __name__ == '__main__':
             for data in iter(testloader):
                 inputs, labels = data
     #             GPU
-    #             images, labels = images.to(device), labels.to(device)
+    #             inputs, labels = inputs.to(device), labels.to(device)
                 outputs = network(inputs)
                 probability, prediction = torch.max(outputs, 1)
                 total += labels.size(0)
