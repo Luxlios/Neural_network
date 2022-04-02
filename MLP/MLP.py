@@ -20,9 +20,9 @@ class mlp(nn.Module):
         super(mlp, self).__init__()
         # 输入32*32*3(CIFAR-10)
         self.fc = nn.Sequential(
-            nn.Linear(in_features = 32 * 32 * 3, out_features = 100),
+            nn.Linear(in_features=32 * 32 * 3, out_features=100),
             nn.ReLU(),
-            nn.Linear(in_features = 100, out_features = 10)
+            nn.Linear(in_features=100, out_features=10)
         )
     def forward(self, x):
         x = x.view(-1, 32*32*3)
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     loss_function = nn.CrossEntropyLoss()
     # GPU
     # device = torch.device("cuda:0")
-    # network = LeNet().to(device)
+    # network = mlp().to(device)
     network = mlp()
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
 
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         for data in iter(trainloader):
             inputs, labels = data
     #         GPU
-    #         images, labels = images.to(device), labels.to(device)
+    #         inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = network(inputs)
             loss = loss_function(outputs, labels)
@@ -90,7 +90,7 @@ if __name__ == '__main__':
             for data in iter(trainloader):
                 inputs, labels = data
     #             GPU
-    #             images, labels = images.to(device), labels.to(device)
+    #             inputs, labels = inputs.to(device), labels.to(device)
                 outputs = network(inputs)
                 probability, prediction = torch.max(outputs, 1)
                 total += labels.size(0)
@@ -105,7 +105,7 @@ if __name__ == '__main__':
             for data in iter(testloader):
                 inputs, labels = data
     #             GPU
-    #             images, labels = images.to(device), labels.to(device)
+    #             inputs, labels = inputs.to(device), labels.to(device)
                 outputs = network(inputs)
                 probability, prediction = torch.max(outputs, 1)
                 total += labels.size(0)
