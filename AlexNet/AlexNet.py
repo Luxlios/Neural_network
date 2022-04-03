@@ -49,7 +49,8 @@ class alexnet(nn.Module):
             nn.Linear(in_features = 4096, out_features = 4096),
             nn.ReLU(),
 #             nn.Dropout(0.5),
-            nn.Linear(in_features = 4096, out_features = 10)
+            nn.Linear(in_features = 4096, out_features = 10), 
+            nn.Softmax(dim=1)
         )
     def forward(self, x):
         x = self.conv(x)
