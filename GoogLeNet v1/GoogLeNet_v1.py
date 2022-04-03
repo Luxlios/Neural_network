@@ -102,7 +102,8 @@ class googlenet_v1(nn.Module):
         # fully connection
         self.fc = nn.Sequential(
             nn.Dropout(p=0.4),
-            nn.Linear(in_features=1024, out_features=n_class)
+            nn.Linear(in_features=1024, out_features=n_class), 
+            nn.Softmax(dim=1)
         )
 
     def forward(self, x):
