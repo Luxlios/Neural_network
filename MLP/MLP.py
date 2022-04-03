@@ -22,7 +22,8 @@ class mlp(nn.Module):
         self.fc = nn.Sequential(
             nn.Linear(in_features=32 * 32 * 3, out_features=100),
             nn.ReLU(),
-            nn.Linear(in_features=100, out_features=10)
+            nn.Linear(in_features=100, out_features=10), 
+            nn.Softmax(dim=1)
         )
     def forward(self, x):
         x = x.view(-1, 32*32*3)
