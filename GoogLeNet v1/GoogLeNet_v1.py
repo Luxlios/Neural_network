@@ -16,28 +16,34 @@ class inception(nn.Module):
         # input: n * n * in_chan
         # branch1
         self.branch1 = nn.Sequential(
-            nn.Conv2d(in_channels=in_chan, out_channels=out_bran11, kernel_size=1, stride=1, padding=0)
+            nn.Conv2d(in_channels=in_chan, out_channels=out_bran11, kernel_size=1, stride=1, padding=0),
+            nn.ReLU()
             # n * n * out_bran11
         )
         # branch2
         self.branch2 = nn.Sequential(
             nn.Conv2d(in_channels=in_chan, out_channels=out_bran21, kernel_size=1, stride=1, padding=0),
+            nn.ReLU(),
             # n * n * out_bran21
-            nn.Conv2d(in_channels=out_bran21, out_channels=out_bran22, kernel_size=3, stride=1, padding=1)
+            nn.Conv2d(in_channels=out_bran21, out_channels=out_bran22, kernel_size=3, stride=1, padding=1),
+            nn.ReLU()
             # n * n * out_bran22
         )
         # branch3
         self.branch3 = nn.Sequential(
             nn.Conv2d(in_channels=in_chan, out_channels=out_bran31, kernel_size=1, stride=1, padding=1),
+            nn.ReLU(),
             # n+1 * n+1 * out_bran31
-            nn.Conv2d(in_channels=out_bran31, out_channels=out_bran32, kernel_size=5, stride=1, padding=1)
+            nn.Conv2d(in_channels=out_bran31, out_channels=out_bran32, kernel_size=5, stride=1, padding=1),
+            nn.ReLU()
             # n * n * out_bran32
         )
         #branch4
         self.branch4 = nn.Sequential(
             nn.MaxPool2d(kernel_size=3, stride=1, padding=0),
             # n-1 * n-1 * in_chan
-            nn.Conv2d(in_channels=in_chan, out_channels=out_bran42, kernel_size=1, stride=1, padding=1)
+            nn.Conv2d(in_channels=in_chan, out_channels=out_bran42, kernel_size=1, stride=1, padding=1),
+            nn.ReLU()
             # n * n * out_bran42
         )
 
@@ -56,15 +62,15 @@ class googlenet_v1(nn.Module):
         super(googlenet_v1, self).__init__()
         # input: 32 * 32 * 3    paper: 224 * 224 * 3
         # resize to 224*224*3
-        # 直接32*32*3输入难以满足inception中的大kernel_size卷积
-        
         # convolution & pooling
         self.conv = nn.Sequential(
             # layer 1
             nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3),  # 112*112*64
+            nn.ReLU(),
             nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 56*56*64
             # layer 2
             nn.Conv2d(in_channels=64, out_channels=192, kernel_size=3, stride=1, padding=1),  # 56*56*192
+            nn.ReLU(),
             nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 28*28*192
             # layer 3-inception
             inception(in_chan=192, out_bran11=64, out_bran21=96, out_bran22=128,
