@@ -55,41 +55,42 @@ class googlenet_v1(nn.Module):
     def __init__(self, n_class):
         super(googlenet_v1, self).__init__()
         # input: 32 * 32 * 3    paper: 224 * 224 * 3
+        # resize to 224*224*3
+        # 直接32*32*3输入难以满足inception中的大kernel_size卷积
+        
         # convolution & pooling
         self.conv = nn.Sequential(
             # layer 1
-            nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3),  # 16*16*64
-            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 8*8*64
+            nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3),  # 112*112*64
+            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 56*56*64
             # layer 2
-            nn.Conv2d(in_channels=64, out_channels=192, kernel_size=3, stride=1, padding=1),  # 8*8*192
-            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),
+            nn.Conv2d(in_channels=64, out_channels=192, kernel_size=3, stride=1, padding=1),  # 56*56*192
+            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 28*28*192
             # layer 3-inception
             inception(in_chan=192, out_bran11=64, out_bran21=96, out_bran22=128,
-                      out_bran31=16, out_bran32=32, out_bran42=32),  # 8*8*256
+                      out_bran31=16, out_bran32=32, out_bran42=32),  # 28*28*256
             inception(in_chan=256, out_bran11=128, out_bran21=128, out_bran22=192,
-                      out_bran31=32, out_bran32=96, out_bran42=64),  # 8*8*480
-            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 4*4*480
+                      out_bran31=32, out_bran32=96, out_bran42=64),  # 28*28*480
+            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 14*14*480
             # layer 4-inception
             inception(in_chan=480, out_bran11=192, out_bran21=96, out_bran22=208,
-                      out_bran31=16, out_bran32=48, out_bran42=64),  # 8*8*512
+                      out_bran31=16, out_bran32=48, out_bran42=64),  # 14*14*512
             inception(in_chan=512, out_bran11=160, out_bran21=112, out_bran22=224,
-                      out_bran31=24, out_bran32=64, out_bran42=64),  # 8*8*512
+                      out_bran31=24, out_bran32=64, out_bran42=64),  # 14*14*512
             inception(in_chan=512, out_bran11=128, out_bran21=128, out_bran22=256,
-                      out_bran31=24, out_bran32=64, out_bran42=64),  # 8*8*512
+                      out_bran31=24, out_bran32=64, out_bran42=64),  # 14*14*512
             inception(in_chan=512, out_bran11=112, out_bran21=144, out_bran22=288,
-                      out_bran31=32, out_bran32=64, out_bran42=64),  # 8*8*528
+                      out_bran31=32, out_bran32=64, out_bran42=64),  # 14*14*528
             inception(in_chan=528, out_bran11=256, out_bran21=160, out_bran22=320,
-                      out_bran31=32, out_bran32=128, out_bran42=128),  # 8*8*832
-            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 4*4*832
+                      out_bran31=32, out_bran32=128, out_bran42=128),  # 14*14*832
+            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),  # 7*7*832
             # layer 5-inception
             inception(in_chan=832, out_bran11=256, out_bran21=160, out_bran22=320,
-                      out_bran31=32, out_bran32=128, out_bran42=128),  # 4*4*832
+                      out_bran31=32, out_bran32=128, out_bran42=128),  # 7*7*832
             inception(in_chan=832, out_bran11=384, out_bran21=192, out_bran22=384,
-                      out_bran31=48, out_bran32=128, out_bran42=128),  # 4*4*1024
+                      out_bran31=48, out_bran32=128, out_bran42=128),  # 7*7*1024
             # layer 6
-            # paper: kernel_size=7
-            # input: 32*32 kernel_size=4
-            nn.AvgPool2d(kernel_size=4, stride=1)  # 1*1*1024
+            nn.AvgPool2d(kernel_size=7, stride=1)  # 1*1*1024
         )
 
         # fully connection
@@ -111,7 +112,8 @@ if __name__ == '__main__':
 
     # generalization
     # 把rgb值标准化到均值为0.5，方差为0.5，归一化到[0, 1]这个区间
-    transformer = transforms.Compose([transforms.ToTensor(),
+    transformer = transforms.Compose([transforms.Resize((224, 224)),
+                                      transforms.ToTensor(),
                                       transforms.Normalize((0.5, 0.5, 0.5),
                                                            (0.5, 0.5, 0.5))])
 
@@ -139,9 +141,9 @@ if __name__ == '__main__':
     # GPU
     # device = torch.device("cuda:0")
     # network = googlenet_v1(n_class=10).to(device)
+    # network.cuda()
     network = googlenet_v1(n_class=10)
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
-
 
     # train & test
     epoches = 25
@@ -201,8 +203,3 @@ if __name__ == '__main__':
     plt.xlabel('epoch')
     plt.ylabel('accuracy')
     plt.show()
-
-
-
-
-
