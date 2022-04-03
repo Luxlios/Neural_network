@@ -34,7 +34,8 @@ class lenet_5(nn.Module):
             nn.ReLU(),
             nn.Linear(in_features=120, out_features=84),
             nn.ReLU(),
-            nn.Linear(in_features=84, out_features=10)
+            nn.Linear(in_features=84, out_features=10), 
+            nn.Softmax(dim=1)
         )
 
     def forward(self, x):
