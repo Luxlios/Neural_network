@@ -60,8 +60,8 @@ class vggC(nn.Module):
             nn.ReLU(),
             nn.Linear(in_features=4096, out_features=1000),
             nn.ReLU(),
-            nn.Linear(in_features=1000, out_features=n_class)
-
+            nn.Linear(in_features=1000, out_features=n_class), 
+            nn.Softmax(dim=1)
         )
 
     def forward(self, x):
