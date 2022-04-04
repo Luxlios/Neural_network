@@ -41,10 +41,10 @@
 5.引入LSR(Label-Smoothing Regularization)处理标记，减少过拟合以及对于数据的信赖  
 6.采用RMSProp优化器进行训练  
 7.用7×7替代原来的5×5同样采用1进行卷积分解  
-Inception v2中采用了1、2和4  
-Inception v3中采用了全部的点1-7  
+Inception v2中采用了技巧1、2和4  
+Inception v3中采用了全部的技巧（1-7）  
 [Paper](https://arxiv.org/pdf/1512.00567v3.pdf)   
-[网络optimizer参考Paper](https://arxiv.org/pdf/1609.04747.pdf)  
+[网络Optimizer参考Paper](https://arxiv.org/pdf/1609.04747.pdf)  
 
 ......
 
