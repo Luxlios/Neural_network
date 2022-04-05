@@ -40,7 +40,7 @@
 4.inception“更宽”消除表示瓶颈（用并行的形式代替串行，减少计算量的同时不会降低表征能力）  
 5.引入LSR(Label-Smoothing Regularization)处理标记，减少过拟合以及对于数据的信赖  
 6.采用RMSProp优化器进行训练  
-7.用7×7替代原来的5×5同样采用1进行卷积分解  
+7.Inception v1中第一层的7×7卷积也采用1进行分解    
 Inception v2中采用了技巧1、2和4  
 Inception v3中采用了全部的技巧（1-7）  
 [Paper](https://arxiv.org/pdf/1512.00567v3.pdf)   
