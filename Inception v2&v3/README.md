@@ -4,14 +4,14 @@
 Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)  
 
 ### Content
-- [Batch Normalization](#Batch Normalization)
-- [New Inception Architecture](#New Inception Architecture)
-  - [Inception A](#Inception A)
-  - [Inception B](#Inception B)
-  - [Inception C](#Inception C)
-  - [Inception D](#Inception D)
-- [Inception v2 Architecture](#Inception v2 Architecture)
-- [Inception v3 Architecture](#Inception v3 Architecture)
+- [Batch Normalization](#batch-normalization)
+- [New Inception Architecture](#new-inception-architecture)
+  * [Inception A](#inception-a)
+  * [Inception B](#inception-b)
+  * [Inception C](#inception-c)
+  * [Inception D](#inception-d)
+- [Inception v2 Architecture](#inception-v2-architecture)
+- [Inception v3 Architecture](#inception-v3-architecture)
 
 ### Batch Normalization
 <div align='center'>
