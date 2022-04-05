@@ -41,3 +41,14 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
   <img src='https://github.com/Luxlios/Figure/blob/main/CNN/inception_d.png' height='300'>
 </div>
 
+### Inception v2
+<div align='center'>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/Inception_v2.png' height='300'>
+</div>
+
+### Inception v3
+在Inception v2架构的基础上添加几个点：  
+- Optimizer: RMSProp
+- Label Smoothing Regularization
+- Factorize the first 7×7 convolutional layer into a sequence of 3×3 convolutional layers
+- Auxiliary classifier + BN
