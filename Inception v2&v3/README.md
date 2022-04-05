@@ -49,6 +49,9 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 ### Inception v3
 在Inception v2架构的基础上添加几个点：  
 - Optimizer: RMSProp
+1. with decay of 0.9 and epsilon=1.0  
+2. learning rate of 0.045, decayed every two epoch using an exponential rate of 0.94  
+3. gradient clipping with threshold 2.0(be found to be useful to stabilize the training)  
 - Label Smoothing Regularization
 - Factorize the first 7×7 convolutional layer into a sequence of 3×3 convolutional layers
 - Auxiliary classifier + BN
