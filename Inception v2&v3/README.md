@@ -10,6 +10,8 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
   - [Inception B](#Inception B)
   - [Inception C](#Inception C)
   - [Inception D](#Inception D)
+- [Inception v2 Architecture](#Inception v2 Architecture)
+- [Inception v3 Architecture](#Inception v3 Architecture)
 
 ### Batch Normalization
 <div align='center'>
