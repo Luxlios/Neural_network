@@ -28,7 +28,7 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 #### Inception B
 ##### 用1×n与n×1卷积级联代替n×n卷积
 <div align='center'>
-  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/inception_b.png' height='300'>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/inception_b.png' height='400'>
 </div>
 
 #### Inception C
@@ -43,12 +43,12 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
   <img src='https://github.com/Luxlios/Figure/blob/main/CNN/inception_d.png' height='300'>
 </div>
 
-### Inception v2
+### Inception v2 Architecture
 <div align='center'>
-  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/Inception_v2.png' height='300'>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/Inception_v2.png' height='400'>
 </div>
 
-### Inception v3
+### Inception v3 Architecture
 在Inception v2架构的基础上添加几个点：  
 - Optimizer: RMSProp
 1. with decay of 0.9 and epsilon=1.0  
