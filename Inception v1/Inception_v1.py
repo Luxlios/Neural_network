@@ -201,7 +201,7 @@ if __name__ == '__main__':
 #     device = torch.device("cuda:0")
 #     network = inception_v1(n_class=10, state='train').to(device)
 #     network.cuda()
-    network = googlenet_v1(n_class=10)
+    network = inception_v1(n_class=10)
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
 
     # train & test
