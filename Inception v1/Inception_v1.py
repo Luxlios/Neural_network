@@ -198,10 +198,10 @@ if __name__ == '__main__':
     # optimization & loss function
     loss_function = nn.CrossEntropyLoss()
     # GPU
-    device = torch.device("cuda:0")
-    network = inception_v1(n_class=10, state='train').to(device)
-    network.cuda()
-    # network = googlenet_v1(n_class=10)
+#     device = torch.device("cuda:0")
+#     network = inception_v1(n_class=10, state='train').to(device)
+#     network.cuda()
+    network = googlenet_v1(n_class=10)
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
 
     # train & test
@@ -213,7 +213,7 @@ if __name__ == '__main__':
         for data in iter(trainloader):
             inputs, labels = data
     #         GPU
-            inputs, labels = inputs.to(device), labels.to(device)
+#             inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             # auxiliary classifier
             aux_out1, aux_out2, outputs = network(inputs)
@@ -233,7 +233,7 @@ if __name__ == '__main__':
             for data in iter(trainloader):
                 inputs, labels = data
     #             GPU
-                inputs, labels = inputs.to(device), labels.to(device)
+#                 inputs, labels = inputs.to(device), labels.to(device)
                 aux_out1, aux_out2, outputs = network(inputs)
                 probability, prediction = torch.max(outputs, 1)
                 total += labels.size(0)
@@ -248,7 +248,7 @@ if __name__ == '__main__':
             for data in iter(testloader):
                 inputs, labels = data
     #             GPU
-                inputs, labels = inputs.to(device), labels.to(device)
+#                 inputs, labels = inputs.to(device), labels.to(device)
                 aux_out1, aux_out2, outputs = network(inputs)
                 probability, prediction = torch.max(outputs, 1)
                 total += labels.size(0)
