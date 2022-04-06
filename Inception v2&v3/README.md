@@ -18,6 +18,10 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
   <img src='https://github.com/Luxlios/Figure/blob/main/CNN/bn.png' height='300'>
 </div>
 
+```
+torch.nn.BatchNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)
+```
+
 ### New Inception Architecture
 #### Inception A 
 ##### 用两个3×3卷积代替5×5卷积
