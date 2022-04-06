@@ -11,7 +11,6 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
   * [Inception C](#inception-c)
   * [Inception D](#inception-d)
   * [Auxiliary classifier](#auxiliary-classifier)
-  * [Label-Smoothing Regularizaiton](#label-smoothing-regularizaiton)
 - [Inception v2 Architecture](#inception-v2-architecture)
 - [Inception v3 Architecture](#inception-v3-architecture)
 
