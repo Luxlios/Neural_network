@@ -38,7 +38,7 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 </div>
 
 #### Inception D
-##### 降低高宽度的同时提高通道层数
+##### 降低高度与宽度的同时提高通道层数
 <div align='center'>
   <img src='https://github.com/Luxlios/Figure/blob/main/CNN/inception_d.png' height='300'>
 </div>
