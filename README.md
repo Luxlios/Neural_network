@@ -36,12 +36,12 @@
 在BN与Inception结合的基础上提出了Inception v2&v3  
 1.学习VGG，采用两个3x3卷积代替5x5卷积  
 2.将nxn卷积分别为1xn卷积和nx1卷积，减少1/3的cost  
-3.在GooLeNet两个额外分支加入BN，将它们看作为正则项  
+3.GooLeNet的额外分支加入BN，将它们看作为正则项  
 4.inception“更宽”消除表示瓶颈（用并行的形式代替串行，减少计算量的同时不会降低表征能力）  
 5.引入LSR(Label-Smoothing Regularization)处理标记，减少过拟合以及对于数据的信赖  
 6.采用RMSProp优化器进行训练  
 7.Inception v1中第一层的7×7卷积也采用1进行分解    
-Inception v2中采用了技巧1、2和4  
+Inception v2中采用了技巧1、2、4和7  
 Inception v3中采用了全部的技巧（1-7）  
 [Paper](https://arxiv.org/pdf/1512.00567v3.pdf)   
 [网络Optimizer参考Paper](https://arxiv.org/pdf/1609.04747.pdf)  
