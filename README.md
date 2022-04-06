@@ -46,5 +46,10 @@ Inception v3中采用了全部的技巧（1-7）
 [Paper](https://arxiv.org/pdf/1512.00567v3.pdf)   
 [网络Optimizer参考Paper](https://arxiv.org/pdf/1609.04747.pdf)  
 
+2015 -- ResNet  
+[Paper](https://arxiv.org/pdf/1512.03385.pdf)  
+
+2016 -- Inception v4  
+[Paper](https://arxiv.org/pdf/1602.07261.pdf)  
 ......
 
