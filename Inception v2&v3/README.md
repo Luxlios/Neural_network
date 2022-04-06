@@ -51,7 +51,7 @@ torch.nn.BatchNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True, track_r
 #### Auxiliary classifier
 ##### locate in top of the last 17×17 layer
 <div align='center'>
-  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/auxiliary_classifier.png' height='300'>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/auxiliary_classifier.png' height='200'>
 </div>
 
 ### Inception v2 Architecture
