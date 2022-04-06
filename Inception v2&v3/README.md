@@ -10,6 +10,7 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
   * [Inception B](#inception-b)
   * [Inception C](#inception-c)
   * [Inception D](#inception-d)
+  * [Auxiliary classifier](#auxiliary-classifier)
 - [Inception v2 Architecture](#inception-v2-architecture)
 - [Inception v3 Architecture](#inception-v3-architecture)
 
@@ -45,6 +46,12 @@ torch.nn.BatchNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True, track_r
 ##### 降低高度与宽度的同时提高通道层数
 <div align='center'>
   <img src='https://github.com/Luxlios/Figure/blob/main/CNN/inception_d.png' height='300'>
+</div>
+
+#### Auxiliary classifier
+##### locate in top of the last 17×17 layer
+<div align='center'>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/auxiliary_classifier.png' height='300'>
 </div>
 
 ### Inception v2 Architecture
