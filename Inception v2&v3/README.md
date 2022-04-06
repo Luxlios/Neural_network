@@ -11,6 +11,7 @@ Dataset:[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
   * [Inception C](#inception-c)
   * [Inception D](#inception-d)
   * [Auxiliary classifier](#auxiliary-classifier)
+  * [Label-Smoothing Regularizaiton](#label-smoothing-regularizaiton)
 - [Inception v2 Architecture](#inception-v2-architecture)
 - [Inception v3 Architecture](#inception-v3-architecture)
 
@@ -65,6 +66,6 @@ torch.nn.BatchNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True, track_r
 1. with decay of 0.9 and epsilon=1.0  
 2. learning rate of 0.045, decayed every two epoch using an exponential rate of 0.94  
 3. gradient clipping with threshold 2.0(be found to be useful to stabilize the training)  
-- Label Smoothing Regularization(Calculate loss after label smoothing)
+- Label Smoothing Regularization(Calculate Cross-Entropy loss after label smoothing)
 - Factorize the first 7×7 convolutional layer into a sequence of 3×3 convolutional layers
 - Auxiliary classifier + BN
