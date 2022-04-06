@@ -307,7 +307,7 @@ class LabelSmoothing(nn.Module):
 
 class inception_v3(nn.Module):
     def __init__(self, n_class, state='train'):
-        super(inception_v2, self).__init__()
+        super(inception_v3, self).__init__()
         # input: 32 * 32 * 3    paper: 299 * 299 * 3
         # resize to 299*299*3
 
