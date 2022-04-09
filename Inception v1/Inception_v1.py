@@ -84,7 +84,7 @@ class inception_aux(nn.Module):
         return x
 
 class inception_v1(nn.Module):
-    def __init__(self, n_class, state):
+    def __init__(self, n_class, state='train'):
         super(inception_v1, self).__init__()
         # input: 32 * 32 * 3    paper: 224 * 224 * 3
         # resize to 224*224*3
