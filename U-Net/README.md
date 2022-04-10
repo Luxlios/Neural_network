@@ -6,7 +6,7 @@
   <img src='https://github.com/Luxlios/Figure/blob/main/CNN/U-Net.png'height='400'>
 </div>
 
-### Strategy
+### Strategy(Symmetric padding)
 <div align='center'>
   <img src='https://github.com/Luxlios/Figure/blob/main/CNN/UNet_symmetric.png'height='250'>
 </div>
