@@ -139,19 +139,15 @@ class UNet(nn.Module):
         # left
         x = self.conv_l1(x)
         x1 = x
-        # x1 = x1.resize(392, 392)  # crop
         x1 = crop(tensor=x1, crop_H=392, crop_W=392)
         x = self.conv_l2(x)
         x2 = x
-        # x2 = x2.resize(200, 200)  # crop
         x2 = crop(tensor=x2, crop_H=200, crop_W=200)
         x = self.conv_l3(x)
         x3 = x
-        # x3 = x3.resize(104, 104)  # crop
         x3 = crop(tensor=x3, crop_H=104, crop_W=104)
         x = self.conv_l4(x)
         x4 = x
-        # x4 = x4.resize(56, 56)  # crop
         x4 = crop(tensor=x4, crop_H=56, crop_W=56)
 
         x = self.conv_bottom(x)
