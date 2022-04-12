@@ -107,7 +107,7 @@ if __name__ == '__main__':
     print('Num_of_train:', len(train_data))
     print('Num_of_test:', len(test_data))
 
-    batch_size = 1
+    batch_size = 15
     trainloader = DataLoader(dataset=train_data, batch_size=batch_size, shuffle=True)
     testloader = DataLoader(dataset=test_data, batch_size=batch_size, shuffle=False)
 
