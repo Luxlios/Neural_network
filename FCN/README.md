@@ -4,5 +4,5 @@ Dataset: [PASCAL VOC2012](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrai
 
 ### Architecture
 <div align='center'>
-  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/FCN_VGG16.png'height=300>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/FCN_VGG16.png'height=250>
 </div>
