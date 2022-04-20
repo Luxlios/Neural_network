@@ -60,7 +60,7 @@ def make_txt(path, train_size=0.7, shuffle=True):
 
 def colormap2label():
     COLORMAP = [[0, 0, 0], [255, 255, 255]]
-    # 21 classes
+    # 2 classes
     # CLASS = ['sediment', 'salt']
 
     # torch.long <-> index(index get)  torch.uint8 <-> mask(0 mask, 1 get)
