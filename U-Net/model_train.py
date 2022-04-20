@@ -6,19 +6,21 @@
 
 import os
 import random
+import numpy as np
 from torch.utils.data import Dataset, DataLoader
 from PIL import Image
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from torchvision import transforms
-from torch.utils.data import DataLoader
 import torch.optim as optim
+from sklearn.metrics import confusion_matrix
+from segmentation_metrics import metrics
+from UNet import UNet
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
-from UNet import UNet
-
-def make_txt(path, train_size=1.0, shuffle=True):
+def make_txt(path, train_size=0.7, shuffle=True):
     # Divide the dataset into training set and test set and convert it to txt
     # data: path/images/1.png
     # label: path/masks/1.png
@@ -56,13 +58,63 @@ def make_txt(path, train_size=1.0, shuffle=True):
     train.close()
     test.close()
 
-def default_loader(path):
+def colormap2label():
+    COLORMAP = [[0, 0, 0], [255, 255, 255]]
+    # 21 classes
+    # CLASS = ['sediment', 'salt']
+
+    # torch.long <-> index(index get)  torch.uint8 <-> mask(0 mask, 1 get)
+    # tensor index -- torch.long, not the same as numpy
+    colormap2label = torch.zeros(256**3, dtype=torch.long)
+    # 0xffffff(256 256 256)
+    # R,G,B -> [0, 255]
+    for i, colormap in enumerate(COLORMAP):
+        # Hex -> Dec
+        # index: color
+        # value: label
+        colormap2label[(colormap[0] * 256 + colormap[1]) * 256 + colormap[2]] = i
+    return colormap2label
+
+# 3 channels RGB image -> n_class channels onehot matrix
+def mask2labelnonehot(mask, n_class=2, colormap2label=colormap2label()):
+    # mask: tensor, channel=3 * height * width
+
+    # mask to label
+    # every pixel(3 channels) <-> colormap
+    # transforms.ToTensor() --> RGB value / 255
+    index_matrix = ((mask[0, :, :] * 255) * 256 + (mask[1, :, :] * 255)) * 256 + (mask[2, :, :] * 255)
+    label_matrix = colormap2label[index_matrix.long()]
+
+    # label to onehot
+    onehot = F.one_hot(label_matrix, num_classes=n_class)
+    onehot = onehot.permute([2, 0, 1]).float()  # torch.long to torch.float
+
+    return label_matrix, onehot
+
+def onehot2labelnmask(onehot):
+    # onehot: tensor, batch * channel=21 * height * width
+
+    # onehot to label
+    label = torch.max(onehot, 1)[1]
+
+    # label to mask
+    COLORMAP = [[0, 0, 0], [255, 255, 255]]
+    COLORMAP = torch.Tensor(COLORMAP)
+    mask = COLORMAP[label].permute([0, 3, 1, 2])
+    return label, mask
+
+def default_imgloader(path):
     with open(path, 'rb') as f:
         with Image.open(f) as img:
-            return img.convert('L')  # grayscale
+            return img.convert('L')   # grayscale
+def default_masloader(path):
+    with open(path, 'rb') as f:
+        with Image.open(f) as  img:
+            return img.convert('RGB')
 
 class SegDataset(Dataset):
-    def __init__(self, txt, transform_image=None, transform_mask=None, loader=default_loader):
+    def __init__(self, txt, transform_image=None, transform_mask=None, imgloader=default_imgloader,
+                 masloader=default_masloader, mask2onehot=mask2labelnonehot):
         super(SegDataset, self).__init__()
         txt_content = open(txt, 'r')
         imagenmask = []
@@ -74,23 +126,26 @@ class SegDataset(Dataset):
         self.imagenmask = imagenmask
         self.transform_image = transform_image
         self.transform_mask = transform_mask
-        self.loader = loader
+        self.imgloader = imgloader
+        self.masloader = masloader
+        self.mask2onehot=mask2onehot
 
     def __getitem__(self, index):
         image, mask = self.imagenmask[index]
-        img = self.loader(image)
-        mas = self.loader(mask)
+        img = self.imgloader(image)
+        mas = self.masloader(mask)
         if self.transform_image is not None:
             img = self.transform_image(img)
         if self.transform_mask is not None:
             mas = self.transform_mask(mas)
-        return img, mas
+        label, onehot = self.mask2onehot(mas)
+        return img, onehot
 
     def __len__(self):
         return len(self.imagenmask)
 
 if __name__ == '__main__':
-    make_txt('tgs-salt-identification-challenge/train', train_size=1, shuffle=True)
+    make_txt('tgs-salt-identification-challenge/train', train_size=0.7, shuffle=True)
     transformer_image = transforms.Compose([transforms.Resize((388, 388)),  # 388 + 92 + 92 =572
                                             transforms.Pad(padding=92, padding_mode='reflect'),
                                             transforms.ToTensor(),
@@ -107,7 +162,7 @@ if __name__ == '__main__':
     print('Num_of_train:', len(train_data))
     print('Num_of_test:', len(test_data))
 
-    batch_size = 15
+    batch_size = 20
     trainloader = DataLoader(dataset=train_data, batch_size=batch_size, shuffle=True)
     testloader = DataLoader(dataset=test_data, batch_size=batch_size, shuffle=False)
 
@@ -115,30 +170,50 @@ if __name__ == '__main__':
     loss_function = nn.BCEWithLogitsLoss()
     # GPU
     device = torch.device("cuda:0")
-    network = UNet(n_class=1).to(device)
+    n_class=2
+    network = UNet(n_class=n_class).to(device)
     network.cuda()
-    # network = UNet(n_class=1)
+    # network = UNet(n_class=n_class)
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
 
     # train
     epochs = 100
-    accuracy_record_train = []
-    accuracy_record_test = []
     for epoch in range(epochs):
         network.train()
+        network.train()
         for data in iter(trainloader):
-            inputs, labels = data
-    #         GPU
-            inputs, labels = inputs.to(device), labels.to(device)
+            images, onehots = data
+            # GPU
+            images, onehots = images.to(device), onehots.to(device)
             optimizer.zero_grad()
             # classifier
-            outputs = network(inputs)
-            loss = loss_function(outputs, labels)
+            outputs = network(images)
+            loss = loss_function(outputs, onehots)
             # 反向梯度传播
             loss.backward()
             # 用梯度做优化
             optimizer.step()
-        print('[epoch: %d] loss: %.3f'%(epoch, loss))
+        network.eval()
+        confusionmatrix = np.zeros([n_class, n_class])
+        total = 0
+        loss_total = 0
+        with torch.no_grad():
+            for data in iter(testloader):
+                images, onehots = data
+                # GPU
+                images, onehots = images.to(device), onehots.to(device)
+                outputs = network(images)
+                loss_total += loss_function(outputs, onehots)
+                total += outputs.size(0)
+                label_pred, mask_pred = onehot2labelnmask(outputs)
+                label_true, mask_true = onehot2labelnmask(onehots)
+                label_pred, label_true = label_pred.cpu().numpy().reshape(-1), label_true.cpu().numpy().reshape(-1)
+                # calculate confusion matrix
+                confusionmatrix += confusion_matrix(label_true, label_pred)
+        metric = metrics(n_class=n_class, confusion_matrix=confusionmatrix)
+        print('[test epoch: %d]loss: %.3f, pixel acc.: %.3f%%, mean acc.: %.3f%%, mean IU: %.3f%%, f.w. IU: %.3f%%'
+              % (epoch + 1, loss_total / total, metric.pixelaccuracy() * 100, metric.meanaccuracy() * 100,
+                 metric.meaniu() * 100, metric.frequencyweightediu() * 100))
         # save model every 10 epochs
         if (epoch + 1) % 10 == 0:
             # save model
@@ -157,6 +232,3 @@ if __name__ == '__main__':
             '''
         else:
             pass
-
-
-
