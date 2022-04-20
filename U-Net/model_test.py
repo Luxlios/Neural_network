@@ -13,7 +13,7 @@ import numpy as np
 from model_train import onehot2labelnmask
 
 def model_test(test_image, model_pth):
-    network = UNet(n_class=1)
+    network = UNet(n_class=2)
     checkpoint = torch.load(model_pth)
     network.load_state_dict(checkpoint['model'])
     transformer_image = transforms.Compose([transforms.Resize((388, 388)),  # 388 + 92 + 92 =572
