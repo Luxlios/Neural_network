@@ -5,6 +5,7 @@
   `torch`  
   `torchvision`  
   `matplotlib`  
+  `sklearn`
 
 ### CNN模型的发展
 1986 -- MLP  
