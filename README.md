@@ -49,6 +49,7 @@ Inception v3中采用了全部的技巧（1-7）
 
 2015 -- ResNet  
 [Paper](https://arxiv.org/pdf/1512.03385.pdf)  
+引入两种residual learning的架构，解决由于网络加深发生退化的问题  
 
 2016 -- Inception v4  
 [Paper](https://arxiv.org/pdf/1602.07261.pdf)  
