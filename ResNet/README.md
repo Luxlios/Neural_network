@@ -12,6 +12,6 @@ With the network depth increasing, accuracy gets saturated and then degrades rap
 
 #### Architecture
 <div align='center'>
-  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/resnet.png'height=300>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/resnet.png'height=350>
 </div>
 Downsampling is performed by conv3 1, conv4 1, and conv5 1 with a stride of 2.
