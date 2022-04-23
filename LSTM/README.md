@@ -19,7 +19,7 @@ torch.nn.LSTM(input_size, hidden_size, num_layers=1, bias=True,
               batch_first=False, dropout=0, bidirectional=False, proj_size=0)
 ```
 ```
-input: [seq_len, batch_size, input_size]  
+input:  [seq_len, batch_size, input_size]  
 output: [batch_size, hidden_size]
 ```
 batch_size在第二维，与卷积网络中不太相同，这是因为LSTM单元是一个接着一个输入的，总共seq_len个（本次输入需要等到上一次输出后），一个example有input_size维，LSTM单元每次输入batch_size个examples，结合下图理解。
