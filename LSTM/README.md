@@ -1,6 +1,7 @@
 ### LSTM
 [Paper](http://www.bioinf.jku.at/publications/older/2604.pdf)  
-[Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+[Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)  
+Dataset: Bitcoin daily prices, U.S. dollars per bitcoin.([Source](https://www.nasdaq.com/)) 
 
 #### Architecture
 <div align='center'>
