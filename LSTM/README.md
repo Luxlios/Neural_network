@@ -24,5 +24,5 @@ output: [batch_size, hidden_size]
 ```
 batch_size在第二维，与卷积网络中不太相同，这是因为LSTM Unit是一个token接着一个token输入的，结合下图理解，总共seq_len个token（本次输入需要等到上一次输出后），一个token有input_size维，LSTM单元每次输入batch_size个examples。
 <div align='center'>
-  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/lstm_fun.png'height=300>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/lstm_fun.png'height=350>
 </div>
