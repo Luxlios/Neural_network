@@ -1,5 +1,5 @@
 # CNN
-基于pytorch各种CNN基础模型复现 
+基于pytorch各种神经网络基础模型复现 
 
 ### Requirements
   `torch`  
