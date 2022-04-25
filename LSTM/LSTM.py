@@ -37,7 +37,7 @@ def dataset(data, seq_len):
     '''
     :param data: list
     :param seq_len: sequence length
-    :return: sequence, label  (tensor)  , mean, std
+    :return: sequence, label  (np.array)
     '''
     # normalization
     mean = np.mean(data, axis=0)
@@ -65,6 +65,8 @@ if __name__ == '__main__':
     # dataset
     data = pd.read_csv('./BCHAIN-MKPRU.csv')
     # data = {'Data', 'Value'}
+    # get arithmetic return
+    # equivalent to data standardization, which is conducive to network convergence
     del data['Date']
     price = data.values.tolist()
     # a_return = price2areturn(price)  # data: arithmetic return
@@ -122,12 +124,11 @@ if __name__ == '__main__':
     with torch.no_grad():
         label_predction = network(sequence.to(device))[-1]
     plt.figure()
-    plt.plot(range(sequence.size(1)), label.numpy(), c='C0')
-    plt.plot(range(sequence.size(1)), label_predction.cpu().detach().numpy(), c='C1')
+    # de_normalization: label * std / mean
+    plt.plot(range(sequence.size(1)), label.numpy() * std + mean, c='C0')
+    plt.plot(range(sequence.size(1)), label_predction.cpu().detach().numpy() * std + mean, c='C1')
     plt.legend(['ground truth', 'prediction'])
     plt.xlabel('data')
-    plt.ylabel('$')
-    plt.title('closing price(epoch=%d)'%epoches)
+    plt.ylabel('arithmetic return')
+    plt.title('arithmetic return(epoch=%d)'%epoches)
     plt.show()
-
-
