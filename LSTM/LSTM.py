@@ -37,7 +37,7 @@ def dataset(data, seq_len):
     '''
     :param data: list
     :param seq_len: sequence length
-    :return: sequence, label  (np.array)
+    :return: sequence, label  (tensor)  , mean, std
     '''
     # normalization
     mean = np.mean(data, axis=0)
