@@ -1,4 +1,4 @@
-# CNN
+### Neural Network
 基于pytorch各种神经网络基础模型复现 
 
 ### Requirements
