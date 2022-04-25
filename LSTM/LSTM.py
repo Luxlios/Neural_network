@@ -65,8 +65,6 @@ if __name__ == '__main__':
     # dataset
     data = pd.read_csv('./BCHAIN-MKPRU.csv')
     # data = {'Data', 'Value'}
-    # get arithmetic return
-    # equivalent to data standardization, which is conducive to network convergence
     del data['Date']
     price = data.values.tolist()
     # a_return = price2areturn(price)  # data: arithmetic return
@@ -128,8 +126,8 @@ if __name__ == '__main__':
     plt.plot(range(sequence.size(1)), label_predction.cpu().detach().numpy(), c='C1')
     plt.legend(['ground truth', 'prediction'])
     plt.xlabel('data')
-    plt.ylabel('arithmetic return')
-    plt.title('arithmetic return(epoch=%d)'%epoches)
+    plt.ylabel('$')
+    plt.title('closing price(epoch=%d)'%epoches)
     plt.show()
 
 
