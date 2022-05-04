@@ -26,6 +26,13 @@ class metrics():
         iu = intersection / union
         meaniu = iu.sum() / self.n_class
         return meaniu
+    
+    def meandice(self):
+        intersection = np.diag(self.confusion_matrix)
+        add = self.confusion_matrix.sum(axis=1) + self.confusion_matrix.sum(axis=0)
+        dice = 2 * intersection / add
+        meandice = dice.sum() / self.n_class
+        return meandice
 
     def frequencyweightediu(self):
         frequency = self.confusion_matrix.sum(axis=1) / self.confusion_matrix.sum()
