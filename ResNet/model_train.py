@@ -44,11 +44,11 @@ def make_txt(path, train_size=0.7, shuffle=True):
 
         for j in range(len(files_images)):
             if j < len(files_images) * train_size:
-                filename = files_images[i]
+                filename = files_images[j]
                 txt_temp = os.path.join(images, filename) + ' ' + str(i) + '\n'
                 train.write(txt_temp)
             else:
-                filename = files_images[i]
+                filename = files_images[j]
                 txt_temp = os.path.join(images, filename) + ' ' + str(i) + '\n'
                 test.write(txt_temp)
     train.close()
@@ -112,15 +112,16 @@ if __name__ == '__main__':
     print('Num_of_test:', len(test_data))
 
     # dataloader
-    trainloader = DataLoader(train_data, batch_size=32, shuffle=True)
-    testloader = DataLoader(test_data, batch_size=32, shuffle=False)
+    batch_size = 128
+    trainloader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+    testloader = DataLoader(test_data, batch_size=batch_size, shuffle=False)
 
     # optimization & loss function
     loss_function = nn.CrossEntropyLoss()
     # GPU
-    # device = torch.device("cuda:0")
-    # network = resnet_50(n_class=100).to(device)
-    network = resnet_50(n_class=100)
+    device = torch.device("cuda:0")
+    network = resnet_50(n_class=100).to(device)
+    # network = resnet_50(n_class=100)
     optimizer = optim.SGD(network.parameters(), lr=0.001, momentum=0.9)
 
     # train & test
@@ -132,7 +133,7 @@ if __name__ == '__main__':
         for data in iter(trainloader):
             inputs, labels = data
             # GPU
-            # inputs, labels = inputs.to(device), labels.to(device)
+            inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = network(inputs)
             loss = loss_function(outputs, labels)
@@ -148,7 +149,7 @@ if __name__ == '__main__':
             for data in iter(trainloader):
                 inputs, labels = data
                 # GPU
-                # inputs, labels = inputs.to(device), labels.to(device)
+                inputs, labels = inputs.to(device), labels.to(device)
                 outputs = network(inputs)
                 probability, prediction = torch.max(outputs, 1)
                 total += labels.size(0)
@@ -163,7 +164,7 @@ if __name__ == '__main__':
             for data in iter(testloader):
                 inputs, labels = data
                 # GPU
-                # inputs, labels = inputs.to(device), labels.to(device)
+                inputs, labels = inputs.to(device), labels.to(device)
                 outputs = network(inputs)
                 probability, prediction = torch.max(outputs, 1)
                 total += labels.size(0)
