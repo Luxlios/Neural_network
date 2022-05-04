@@ -211,9 +211,10 @@ if __name__ == '__main__':
                 # calculate confusion matrix
                 confusionmatrix += confusion_matrix(label_true, label_pred)
         metric = metrics(n_class=n_class, confusion_matrix=confusionmatrix)
-        print('[test epoch: %d]loss: %.3f, pixel acc.: %.3f%%, mean acc.: %.3f%%, mean IU: %.3f%%, f.w. IU: %.3f%%'
+        print('[test epoch: %d]loss: %.3f, pixel acc.: %.3f%%, mean acc.: %.3f%%, '
+              'mean IU: %.3f%%, f.w. IU: %.3f%%, mean Dice: %.3f%%'
               % (epoch + 1, loss_total / total, metric.pixelaccuracy() * 100, metric.meanaccuracy() * 100,
-                 metric.meaniu() * 100, metric.frequencyweightediu() * 100))
+                 metric.meaniu() * 100, metric.frequencyweightediu() * 100,  metric.meandice() * 100))
         # save model every 10 epochs
         if (epoch + 1) % 10 == 0:
             # save model
