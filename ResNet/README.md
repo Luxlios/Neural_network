@@ -1,6 +1,6 @@
 ### ResNet
 [Paper](https://arxiv.org/pdf/1512.03385.pdf)  
-Dataset: [ImageNet](https://image-net.org/)
+Dataset: [ImageNet](https://image-net.org/)(ImageNet100)
 
 #### Block  
 With the network depth increasing, accuracy gets saturated and then degrades rapidly.   
