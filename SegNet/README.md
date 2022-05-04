@@ -1,6 +1,12 @@
 ### SegNet
 [Paper](https://arxiv.org/pdf/1511.00561.pdf)  
-Dataset: [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid/)[(Download)](https://s3.amazonaws.com/fast-ai-imagelocal/camvid.tgz)  
+Dataset: [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid/)
+
+### pooling indice
+<div align='center'>
+  <img src='https://github.com/Luxlios/Figure/blob/main/CNN/pooling_indice.png'height=300>
+</div>
+利用max-pooling过程中保存的最大值的indice，直接进行max-unpooling上采样，得到一个sparse的feature map。
 
 ### Architecture
 <div align='center'>
