@@ -6,7 +6,8 @@
   `torchvision`  
   `matplotlib`  
   `sklearn`  
-  `tensorboard`
+  `tensorboard`  
+  `tqdm`
 
 ### CNN模型的发展
 1986 -- MLP  
