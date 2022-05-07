@@ -72,7 +72,7 @@ if __name__ == '__main__':
     # if os.path.exists('./tb-log'):
     #     shutil.rmtree('./tb-log')
     tb = SummaryWriter('./tb-log')
-    logger_init(log_file_name='monitor', log_level=logging.DEBUG, log_dir='./logs')
+    logger_init(log_file_name='monitor', log_level=logging.INFO, log_dir='./logs')
     epoches = 25
     for epoch in range(epoches):
         network.train()
