@@ -73,6 +73,9 @@ if __name__ == '__main__':
     #     shutil.rmtree('./tb-log')
     tb = SummaryWriter('./tb-log')
     logger_init(log_file_name='monitor', log_level=logging.DEBUG, log_dir='./logs')
+    # checkpoint
+    if not os.path.exists('./checkpoint'):
+        os.mkdir('checkpoint')
     epoches = 25
     for epoch in range(epoches):
         network.train()
@@ -128,5 +131,23 @@ if __name__ == '__main__':
                        global_step=epoch)
         logging.info(f'[epoch {epoch + 1: d}]loss:{loss: .5f}, train_accuracy:{accuracy_train * 100: .5f}%, '
                      f'test_accuracy:{accuracy_test * 100: .5f}%')
+        # save model every 10 epochs
+        if (epoch + 1) % 10 == 0:
+            # save model
+            save_dict = {
+                'model': network.state_dict(),
+                # 'optimizer': optimizer.state_dict()    # Adam等优化器需要用
+            }
+            torch.save(save_dict, './checkpoint/model_' + 'epoch' + str(epoch + 1) + '.pth.tar')
+            '''
+            # read model
+            network = inception_v1(n_class=10, state='train')
+            # optimizer = optim.Adam(network.parameters(), lr=0.001, weight_decay=0.1)
+            checkpoint = torch.load('./checkpoint/model.pth.tar')
+            network.load_state_dict(checkpoint['model'])
+            # optimizer.load_state_dict(checkpoint['optimizer'])
+            '''
+        else:
+            pass
 
 
