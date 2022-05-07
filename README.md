@@ -5,7 +5,7 @@
   `torch`  
   `torchvision`  
   `matplotlib`  
-  `sklearn`
+  `sklearn`  
   `tensorboard`
 
 ### CNN模型的发展
