@@ -43,7 +43,7 @@ if __name__ == '__main__':
     # r, g, b three dimensions mean to 0.5, 0.5, 0.5  standard deviation to 0.5, 0.5, 0.5
     transformer = transforms.Compose([transforms.Resize((224, 224)),
                                       transforms.ToTensor(),
-                                      transforms.Normalize(0.5, 0.5)])
+                                      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
     mnist_train = torchvision.datasets.CIFAR10(root='./dataset', train=True,
                                                download=True, transform=transformer)
     mnist_test = torchvision.datasets.CIFAR10(root='./dataset', train=False,
