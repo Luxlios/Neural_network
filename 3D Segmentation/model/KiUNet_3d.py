@@ -108,8 +108,8 @@ class KiUNet_3d(nn.Module):
         # 16 * depth/2 * height/2 * width/2
         self.crfb1_ki2u = nn.Sequential(
             nn.Conv3d(in_channels=n_base, out_channels=n_base, kernel_size=3, stride=1, padding=1),
-            # nn.MaxPool3d(kernel_size=4, stride=4),
-            nn.Upsample(scale_factor=0.25, mode='trilinear'),
+            nn.MaxPool3d(kernel_size=4, stride=4),
+            # nn.Upsample(scale_factor=0.25, mode='trilinear'),
             # nn.BatchNorm3d(num_features=n_base),
             nn.ReLU(inplace=True)
         )
@@ -122,8 +122,8 @@ class KiUNet_3d(nn.Module):
         # 32 * depth/4 * height/4 * width/4
         self.crfb2_ki2u = nn.Sequential(
             nn.Conv3d(in_channels=2*n_base, out_channels=2*n_base, kernel_size=3, stride=1, padding=1),
-            # nn.MaxPool3d(kernel_size=16, stride=16),
-            nn.Upsample(scale_factor=0.0625, mode='trilinear'),
+            nn.MaxPool3d(kernel_size=16, stride=16),
+            # nn.Upsample(scale_factor=0.0625, mode='trilinear'),
             # nn.BatchNorm3d(num_features=2*n_base),
             nn.ReLU(inplace=True)
         )
@@ -137,8 +137,8 @@ class KiUNet_3d(nn.Module):
         self.crfb3_ki2u = nn.Sequential(
             # nn.Conv3d(in_channels=4*n_base, out_channels=4*n_base, kernel_size=3, stride=1, padding=1),
             nn.Conv3d(in_channels=2*n_base, out_channels=4*n_base, kernel_size=3, stride=1, padding=1),
-            # nn.MaxPool3d(kernel_size=64, stride=64),
-            nn.Upsample(scale_factor=0.015625, mode='trilinear'),
+            nn.MaxPool3d(kernel_size=64, stride=64),
+            # nn.Upsample(scale_factor=0.015625, mode='trilinear'),
             # nn.BatchNorm3d(num_features=4*n_base),
             nn.ReLU(inplace=True)
         )
@@ -152,8 +152,8 @@ class KiUNet_3d(nn.Module):
         # 32 * depth/4 * height/4 * width/4
         self.crfb4_ki2u = nn.Sequential(
             nn.Conv3d(in_channels=2*n_base, out_channels=2*n_base, kernel_size=3, stride=1, padding=1),
-            # nn.MaxPool3d(kernel_size=16, stride=16),
-            nn.Upsample(scale_factor=0.0625, mode='trilinear'),
+            nn.MaxPool3d(kernel_size=16, stride=16),
+            # nn.Upsample(scale_factor=0.0625, mode='trilinear'),
             # nn.BatchNorm3d(num_features=2*n_base),
             nn.ReLU(inplace=True)
         )
@@ -166,8 +166,8 @@ class KiUNet_3d(nn.Module):
         # 16 * depth/2 * height/2 * width/2
         self.crfb5_ki2u = nn.Sequential(
             nn.Conv3d(in_channels=n_base, out_channels=n_base, kernel_size=3, stride=1, padding=1),
-            # nn.MaxPool3d(kernel_size=4, stride=4),
-            nn.Upsample(scale_factor=0.25, mode='trilinear'),
+            nn.MaxPool3d(kernel_size=4, stride=4),
+            # nn.Upsample(scale_factor=0.25, mode='trilinear'),
             # nn.BatchNorm3d(num_features=n_base),
             nn.ReLU(inplace=True)
         )
@@ -187,7 +187,7 @@ class KiUNet_3d(nn.Module):
         # Initialization
         for m in self.modules():
             if isinstance(m, nn.Conv3d):
-                torch.nn.init.torch.nn.init.kaiming_normal_(m.weight)  #
+                torch.nn.init.torch.nn.init.kaiming_normal_(m.weight)
             elif isinstance(m, nn.BatchNorm3d) or isinstance(m, nn.GroupNorm):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
