@@ -2,6 +2,13 @@
 [3D U-Net](https://arxiv.org/pdf/1606.06650.pdf)&nbsp;&nbsp;&nbsp;&nbsp;
 [KiU-Net](https://arxiv.org/pdf/2006.04878.pdf)  
 Dataset: [BRATS2015](https://www.smir.ch/BRATS/Start2015)
+#### Requirement
+  `torch`  
+  `torchvision`   
+  `sklearn`  
+  `tensorboard`  
+  `tqdm`  
+  `SimpleITK`  
 
 ### Architecture
 #### 3D U-Net
